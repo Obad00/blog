@@ -43,6 +43,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="Image" class="form-label">Image</label>
+                    <input type="text" class="form-control" id="Image" name="image">
+                </div>
+
+                <div class="mb-3">
                     <label for="a_la_une" class="form-label">À la une</label>
                     <input type="radio" id="a_la_une" name="a_la_une" value="1">
                     <label for="pas_a_la_une">Pas à la une</label>
@@ -54,10 +59,7 @@
                     <input type="text" class="form-control" id="Categorie" name="categorie">
                 </div>
 
-                <div class="mb-3">
-                    <label for="Date_de_creation" class="form-label">Date de création</label>
-                    <input type="date" class="form-control" id="Date_de_creation" name="date_de_creation">
-                </div>
+            
 
                 <br>
                 <button type="submit" class="btn btn-primary">Ajouter un article</button>

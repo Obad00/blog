@@ -3,20 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CRUD_ARTICLE</title>
+    <title>Application blog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-<style>
-  h1{
-    text-align: center;
-}
-</style>
+
   </head>
   <body>
     
 
   <div class="container">
-      <h1>Tous les différents articles</h1>
+      <h1>Ensemble des articles de notre site</h1>
       <br>
       <a href="/ajouter" class="btn btn-primary">Ajouter un article</a>
       <hr>
@@ -27,7 +22,10 @@
               @foreach($articles as $article)
               <div class="col-md-4">
                   <div class="card" style="width: 18rem; margin-bottom: 20px;">
-                      <img src="https://st2.depositphotos.com/2026267/5233/i/950/depositphotos_52334423-stock-photo-news-article-on-digital-tablet.jpg" class="card-img-top" alt="...">
+                   @if ($article->image)
+                   <img src="{{ $article->image }}" class="card-img-top" alt="...">
+
+                   @endif
                       <div class="card-body">
 
                           <h5 class="card-title">{{ $article->nom }}</h5>
@@ -45,7 +43,7 @@
                           </div>
 
                           <p class="card-text">{{ $article->categorie }}</p>
-                          <p class="card-text">{{ $article->date_de_creation }}</p>
+                          <p class="card-text">{{ $article->created_at }}</p>
 
                           <a href="{{ url('/modifier-article', $article->id) }}" class="btn btn-primary">Modifier</a>
                           <a href="{{ url('/supprimer-article', $article->id) }}" class="btn btn-danger">Supprimer</a>

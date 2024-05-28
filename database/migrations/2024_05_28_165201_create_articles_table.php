@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('description');
             $table->string('auteur');
             $table->string('a_la_une');
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->string('categorie');
-            $table->timestamp('date_de_creation')->useCurrent();
+            $table->timestamps();
         });
     }
 

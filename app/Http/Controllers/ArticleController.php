@@ -10,11 +10,11 @@ class ArticleController extends Controller
 {
     public function liste_article(){
         $articles = Article::all();
-        return view('article.liste', compact('articles'));
+        return view('liste', compact('articles'));
     }
     
     public function ajouter_article(){
-        return view('article.ajouter');
+        return view('ajouter');
     }
 
     public function ajouter_article_traitement(Request $request)
@@ -25,16 +25,16 @@ class ArticleController extends Controller
             'description' => 'required',
             'a_la_une' => 'required|boolean', // Corrigé
             'auteur' => 'required',
-            'date_de_creation' => 'required|date',
+            
         ]);
 
         $article = new Article();
         $article->nom = $request->nom;
         $article->description = $request->description;
-        $article->a_la_une = $request->a_la_une; // Ajouté
+        $article->a_la_une = $request->a_la_une;
+        $article->image = $request ->image;
         $article->auteur = $request->auteur;
         $article->categorie = $request->categorie;
-        $article->date_de_creation = Carbon::now();  
         $article->save();
 
         return redirect('/ajouter')->with('status', 'L\'article a bien été ajouté avec succès.');
@@ -42,7 +42,7 @@ class ArticleController extends Controller
 
     public function modifier_article($id){
         $article = Article::find($id);
-        return view('article.modifier', compact('article')); // Singularisé
+        return view('modifier', compact('article')); // Singularisé
     }
 
     public function modifier_article_traitement(Request $request, $id){
