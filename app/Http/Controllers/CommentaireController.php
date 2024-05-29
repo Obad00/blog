@@ -23,20 +23,19 @@ class CommentaireController extends Controller
     }
 
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'contenu' => 'required|string|max:255',
-        'article_id' => 'required|exists:articles,id',
-    ]);
+    {
+        $validated = $request->validate([
+            'article_id' => 'required|exists:articles,id',
+            'contenu' => 'required|string',
+        ]);
 
-    $commentaire = new Commentaire();
-    $commentaire->contenu = $validated['contenu'];
-    $commentaire->article_id = $validated['article_id'];
-    $commentaire->save();
+        Commentaire::create([
+            'article_id' => $validated['article_id'],
+            'contenu' => $validated['contenu'],
+        ]);
 
-    return redirect()->route('articles.show', $commentaire->article_id)->with('success', 'Commentaire ajouté avec succès');
-}
-
+        return redirect()->route('articles.commentaires', $validated['article_id'])->with('success', 'Commentaire ajouté avec succès!');
+    }
 
    
 
