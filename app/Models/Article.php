@@ -20,4 +20,9 @@ class Article extends Model
         'statut', 
         
     ];
+
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
 }

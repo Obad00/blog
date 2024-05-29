@@ -10,11 +10,11 @@ class ArticleController extends Controller
 {
     public function liste_article(){
         $articles = Article::all();
-        return view('liste', compact('articles'));
+        return view('articles.liste', compact('articles'));
     }
     
     public function ajouter_article(){
-        return view('ajouter');
+        return view('articles/ajouter');
     }
 
     public function ajouter_article_traitement(Request $request)
@@ -37,12 +37,12 @@ class ArticleController extends Controller
         $article->categorie = $request->categorie;
         $article->save();
 
-        return redirect('/ajouter')->with('status', 'L\'article a bien été ajouté avec succès.');
+        return redirect('/article')->with('status', 'L\'article a bien été ajouté avec succès.');
     }
 
     public function modifier_article($id){
         $article = Article::find($id);
-        return view('modifier', compact('article')); // Singularisé
+        return view('articles/modifier', compact('article')); // Singularisé
     }
 
     public function modifier_article_traitement(Request $request, $id){
@@ -64,7 +64,20 @@ class ArticleController extends Controller
         // Redirection vers la liste des articles avec un message de succès
         return redirect('/article')->with('status', 'L\'article a bien été modifié avec succès.');
     }
+
+    public function details($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('articles.details', compact('article'));
+    }
     
+  
+public function show($id)
+{
+    $article = Article::with('commentaires')->findOrFail($id);
+    return view('articles.show', compact('article'));
+}
+
     
 
     public function supprimer_article($id){
