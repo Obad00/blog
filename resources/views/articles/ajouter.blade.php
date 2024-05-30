@@ -65,7 +65,7 @@
                 <button type="submit" class="btn btn-primary">Ajouter un article</button>
                 <br>
                 <br>
-                <a href="/article" class="btn btn-danger">Revenir à la liste des articles</a>
+                <a href="/articles" class="btn btn-danger">Revenir à la liste des articles</a>
             </form>
         </div>
     </div>

@@ -48,7 +48,7 @@
                     <button type="submit" class="btn btn-primary">Modifier un article</button>
                     <br>
                     <br>
-                    <a href="/article" class="btn btn-danger">Revenir à la liste articles</a>
+                    <a href="/articles" class="btn btn-danger">Revenir à la liste articles</a>
                   </form>
           </div>
           
