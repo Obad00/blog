@@ -29,7 +29,7 @@
                   
             
 
-            <form action="{{URL('modifier-article/'.$article->id )}}" method="POST" name="form-group">
+            <form action="{{URL('modifier-articles/'.$article->id )}}" method="POST" name="form-group">
                 @csrf
 
                 <input type="hidden" name="id" value="{{ $article->id }}">
@@ -42,7 +42,12 @@
                     <div class="form-group">
                         <label for="Description" class="form-label">Description</label>
                         <input type="text" class="form-control" id="Description" name="description" value="{{ $article->description }}">
-                    </div>    
+                    </div>  
+                    
+                    <div class="form-group">
+                      <label for="Image" class="form-label">Image</label>
+                      <input type="text" class="form-control" id="Image" name="image" value="{{ $article->image }}">
+                  </div>  
 
                     <br>
                     <button type="submit" class="btn btn-primary">Modifier un article</button>

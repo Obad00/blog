@@ -1,10 +1,10 @@
-
+{{-- 
 
     <div class="container">
         <h1>{{ $article->nom }}</h1>
         <p>{{ $article->description }}</p>
 
-        <a href="{{ route('commentaires.create', ['article' => $article->id]) }}" class="btn btn-primary">Ajouter un commentaire</a>
+        <a href="{{ route('commentaires.create', $article->id) }}" class="btn btn-primary">Ajouter un commentaire</a>
 
         <h2>Commentaires</h2>
         @if($article->commentaires->isEmpty())
@@ -16,7 +16,6 @@
                         <p>{{ $commentaire->contenu }}</p>
                         <small>Posté le {{ $commentaire->created_at->format('d/m/Y') }}</small>
                         <td>
-                            <a href="{{ route('commentaires.show', $commentaire->id) }}" class="btn btn-info">Détails</a>
                             <a href="{{ route('commentaires.edit', $commentaire->id) }}" class="btn btn-warning">Modifier</a>
                             <form method="POST" action="{{ route('commentaires.destroy', $commentaire->id) }}">
                                 @csrf
@@ -29,4 +28,4 @@
             @endforeach
         @endif
     </div>
-
+ --}}

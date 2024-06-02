@@ -8,12 +8,7 @@ use Illuminate\Http\Request;
 
 class CommentaireController extends Controller
 {
-    public function index($article_id)
-    {
-        $commentaires = Commentaire::all();
-        // dd($commentaires); 
-        return view('commentaires.index', compact('commentaires'));
-    }
+   
     
 
     public function create($article_Id)
@@ -24,17 +19,8 @@ class CommentaireController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'article_id' => 'required|exists:articles,id',
-            'contenu' => 'required|string',
-        ]);
-
-        Commentaire::create([
-            'article_id' => $validated['article_id'],
-            'contenu' => $validated['contenu'],
-        ]);
-
-        return redirect()->route('articles.commentaires', $validated['article_id'])->with('success', 'Commentaire ajouté avec succès!');
+        Commentaire::create($request->all());
+        return back();
     }
 
    
@@ -56,7 +42,7 @@ class CommentaireController extends Controller
             'contenu' => $validated['contenu'],
         ]);
 
-        return redirect()->route('articles.commentaires', $commentaire->article_id)->with('success', 'Commentaire mis à jour avec succès!');
+        return redirect()->route('articles.details', $commentaire->article_id)->with('success', 'Commentaire mis à jour avec succès!');
     }
 
     public function destroy($id)
@@ -64,7 +50,7 @@ class CommentaireController extends Controller
         $commentaire = Commentaire::findOrFail($id);
         $commentaire->delete();
 
-        return redirect()->route('articles.commentaires', $commentaire->article_id)->with('success', 'Commentaire supprimé avec succès!');
+        return redirect()->route('articles.details', $commentaire->article_id)->with('success', 'Commentaire supprimé avec succès!');
     }
 
 }   
